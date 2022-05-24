@@ -64,12 +64,12 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets customer purchase order number reference.
         /// </summary>
-        public string? PurchaseOrderNumber { get; set; }
+        public string PurchaseOrderNumber { get; set; }
 
         /// <summary>
         /// Gets or sets financial accounting number reference.
         /// </summary>
-        public string? AccountNumber { get; set; }
+        public string AccountNumber { get; set; }
 
         /// <summary>
         /// Gets or sets customer identification number. Foreign key to Customer.BusinessEntityID.
@@ -109,7 +109,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets approval code provided by the credit card company.
         /// </summary>
-        public string? CreditCardApprovalCode { get; set; }
+        public string CreditCardApprovalCode { get; set; }
 
         /// <summary>
         /// Gets or sets currency exchange rate used. Foreign key to CurrencyRate.CurrencyRateID.
@@ -139,7 +139,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets sales representative comments.
         /// </summary>
-        public string? Comment { get; set; }
+        public string Comment { get; set; }
 
         /// <summary>
         /// Gets or sets rOWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
@@ -156,11 +156,11 @@ namespace DataAccess.EFCore.Entities
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual CreditCard? CreditCard { get; set; }
+        public virtual CreditCard CreditCard { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual CurrencyRate? CurrencyRate { get; set; }
+        public virtual CurrencyRate CurrencyRate { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -168,7 +168,7 @@ namespace DataAccess.EFCore.Entities
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesPerson? SalesPerson { get; set; }
+        public virtual SalesPerson SalesPerson { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -180,7 +180,7 @@ namespace DataAccess.EFCore.Entities
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesTerritory? Territory { get; set; }
+        public virtual SalesTerritory Territory { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member

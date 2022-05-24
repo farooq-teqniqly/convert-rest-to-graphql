@@ -64,44 +64,50 @@ namespace Services.Repositories
         /// <inheritdoc/>
         public async Task<int> AddSalesPersonAsync(AddSalesPersonModel addSalesPersonModel)
         {
-            var businessEntity = new BusinessEntity();
-            await this.dbContext.BusinessEntities.AddAsync(businessEntity);
-            await this.dbContext.SaveChangesAsync();
+            var transaction = await this.dbContext.Database.BeginTransactionAsync();
 
-            var person = new Person
+            using (transaction)
             {
-                BusinessEntityId = businessEntity.BusinessEntityId,
-                FirstName = addSalesPersonModel.FirstName,
-                MiddleName = addSalesPersonModel.MiddleName,
-                LastName = addSalesPersonModel.LastName,
-                PersonType = "SP",
-            };
+                var businessEntity = new BusinessEntity();
+                await this.dbContext.BusinessEntities.AddAsync(businessEntity);
+                await this.dbContext.SaveChangesAsync();
 
-            var employee = new Employee
-            {
-                BusinessEntityId = businessEntity.BusinessEntityId,
-                HireDate = addSalesPersonModel.HireDate,
-                Gender = addSalesPersonModel.Gender,
-                JobTitle = addSalesPersonModel.JobTitle,
-                MaritalStatus = addSalesPersonModel.MaritalStatus,
-                LoginId = $"adventure-works\\{addSalesPersonModel.LoginId}",
-                NationalIdnumber = addSalesPersonModel.NationalIdNumber,
-                BirthDate = addSalesPersonModel.BirthDate,
-            };
+                var person = new Person
+                {
+                    BusinessEntityId = businessEntity.BusinessEntityId,
+                    FirstName = addSalesPersonModel.FirstName,
+                    MiddleName = addSalesPersonModel.MiddleName,
+                    LastName = addSalesPersonModel.LastName,
+                    PersonType = "SP",
+                };
 
-            var salesPerson = new SalesPerson
-            {
-                BusinessEntityId = businessEntity.BusinessEntityId,
-                TerritoryId = addSalesPersonModel.TerritoryId,
-            };
+                var employee = new Employee
+                {
+                    BusinessEntityId = businessEntity.BusinessEntityId,
+                    HireDate = addSalesPersonModel.HireDate,
+                    Gender = addSalesPersonModel.Gender,
+                    JobTitle = addSalesPersonModel.JobTitle,
+                    MaritalStatus = addSalesPersonModel.MaritalStatus,
+                    LoginId = $"adventure-works\\{addSalesPersonModel.LoginId}",
+                    NationalIdnumber = addSalesPersonModel.NationalIdNumber,
+                    BirthDate = addSalesPersonModel.BirthDate,
+                };
 
-            await this.dbContext.People.AddAsync(person);
-            await this.dbContext.Employees.AddAsync(employee);
-            await this.dbContext.SalesPeople.AddAsync(salesPerson);
+                var salesPerson = new SalesPerson
+                {
+                    BusinessEntityId = businessEntity.BusinessEntityId,
+                    TerritoryId = addSalesPersonModel.TerritoryId,
+                };
 
-            await this.dbContext.SaveChangesAsync();
+                await this.dbContext.People.AddAsync(person);
+                await this.dbContext.Employees.AddAsync(employee);
+                await this.dbContext.SalesPeople.AddAsync(salesPerson);
 
-            return businessEntity.BusinessEntityId;
+                await this.dbContext.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                return businessEntity.BusinessEntityId;
+            }
         }
     }
 }

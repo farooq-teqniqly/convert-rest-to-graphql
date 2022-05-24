@@ -35,12 +35,12 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets detailed product catalog information in xml format.
         /// </summary>
-        public string? CatalogDescription { get; set; }
+        public string CatalogDescription { get; set; }
 
         /// <summary>
         /// Gets or sets manufacturing instructions in xml format.
         /// </summary>
-        public string? Instructions { get; set; }
+        public string Instructions { get; set; }
 
         /// <summary>
         /// Gets or sets rOWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.

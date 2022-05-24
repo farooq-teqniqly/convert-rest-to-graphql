@@ -24,7 +24,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets résumé in XML format.
         /// </summary>
-        public string? Resume { get; set; }
+        public string Resume { get; set; }
 
         /// <summary>
         /// Gets or sets date and time the record was last updated.
@@ -32,7 +32,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Employee? BusinessEntity { get; set; }
+        public virtual Employee BusinessEntity { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

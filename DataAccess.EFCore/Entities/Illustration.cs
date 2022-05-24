@@ -28,7 +28,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets illustrations used in manufacturing instructions. Stored as XML.
         /// </summary>
-        public string? Diagram { get; set; }
+        public string Diagram { get; set; }
 
         /// <summary>
         /// Gets or sets date and time the record was last updated.

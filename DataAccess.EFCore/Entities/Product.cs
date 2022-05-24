@@ -60,7 +60,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets product color.
         /// </summary>
-        public string? Color { get; set; }
+        public string Color { get; set; }
 
         /// <summary>
         /// Gets or sets minimum inventory quantity.
@@ -85,17 +85,17 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets product size.
         /// </summary>
-        public string? Size { get; set; }
+        public string Size { get; set; }
 
         /// <summary>
         /// Gets or sets unit of measure for Size column.
         /// </summary>
-        public string? SizeUnitMeasureCode { get; set; }
+        public string SizeUnitMeasureCode { get; set; }
 
         /// <summary>
         /// Gets or sets unit of measure for Weight column.
         /// </summary>
-        public string? WeightUnitMeasureCode { get; set; }
+        public string WeightUnitMeasureCode { get; set; }
 
         /// <summary>
         /// Gets or sets product weight.
@@ -110,17 +110,17 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets r = Road, M = Mountain, T = Touring, S = Standard.
         /// </summary>
-        public string? ProductLine { get; set; }
+        public string ProductLine { get; set; }
 
         /// <summary>
         /// Gets or sets h = High, M = Medium, L = Low.
         /// </summary>
-        public string? Class { get; set; }
+        public string Class { get; set; }
 
         /// <summary>
         /// Gets or sets w = Womens, M = Mens, U = Universal.
         /// </summary>
-        public string? Style { get; set; }
+        public string Style { get; set; }
 
         /// <summary>
         /// Gets or sets product is a member of this product subcategory. Foreign key to ProductSubCategory.ProductSubCategoryID.
@@ -158,19 +158,19 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ProductModel? ProductModel { get; set; }
+        public virtual ProductModel ProductModel { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ProductSubcategory? ProductSubcategory { get; set; }
+        public virtual ProductSubcategory ProductSubcategory { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual UnitMeasure? SizeUnitMeasureCodeNavigation { get; set; }
+        public virtual UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual UnitMeasure? WeightUnitMeasureCodeNavigation { get; set; }
+        public virtual UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member

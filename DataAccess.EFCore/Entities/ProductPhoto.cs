@@ -29,25 +29,25 @@ namespace DataAccess.EFCore.Entities
         /// Gets or sets small image of the product.
         /// </summary>
 #pragma warning disable SA1011 // Closing square brackets should be spaced correctly
-        public byte[]? ThumbNailPhoto { get; set; }
+        public byte[] ThumbNailPhoto { get; set; }
 #pragma warning restore SA1011 // Closing square brackets should be spaced correctly
 
         /// <summary>
         /// Gets or sets small image file name.
         /// </summary>
-        public string? ThumbnailPhotoFileName { get; set; }
+        public string ThumbnailPhotoFileName { get; set; }
 
         /// <summary>
         /// Gets or sets large image of the product.
         /// </summary>
 #pragma warning disable SA1011 // Closing square brackets should be spaced correctly
-        public byte[]? LargePhoto { get; set; }
+        public byte[] LargePhoto { get; set; }
 #pragma warning restore SA1011 // Closing square brackets should be spaced correctly
 
         /// <summary>
         /// Gets or sets large image file name.
         /// </summary>
-        public string? LargePhotoFileName { get; set; }
+        public string LargePhotoFileName { get; set; }
 
         /// <summary>
         /// Gets or sets date and time the record was last updated.

@@ -35,7 +35,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets second street address line.
         /// </summary>
-        public string? AddressLine2 { get; set; }
+        public string AddressLine2 { get; set; }
 
         /// <summary>
         /// Gets or sets name of the city.

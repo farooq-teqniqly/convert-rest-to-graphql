@@ -44,7 +44,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets the name of the stored procedure or trigger where the error occurred.
         /// </summary>
-        public string? ErrorProcedure { get; set; }
+        public string ErrorProcedure { get; set; }
 
         /// <summary>
         /// Gets or sets the line number at which the error occurred.

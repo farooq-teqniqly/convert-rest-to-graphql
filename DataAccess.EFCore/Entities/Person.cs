@@ -42,7 +42,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets a courtesy title. For example, Mr. or Ms.
         /// </summary>
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets first name of the person.
@@ -52,7 +52,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets middle name or middle initial of the person.
         /// </summary>
-        public string? MiddleName { get; set; }
+        public string MiddleName { get; set; }
 
         /// <summary>
         /// Gets or sets last name of the person.
@@ -62,7 +62,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets surname suffix. For example, Sr. or Jr.
         /// </summary>
-        public string? Suffix { get; set; }
+        public string Suffix { get; set; }
 
         /// <summary>
         /// Gets or sets 0 = Contact does not wish to receive e-mail promotions, 1 = Contact does wish to receive e-mail promotions from AdventureWorks, 2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners.
@@ -72,12 +72,12 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets additional contact information about the person stored in xml format.
         /// </summary>
-        public string? AdditionalContactInfo { get; set; }
+        public string AdditionalContactInfo { get; set; }
 
         /// <summary>
         /// Gets or sets personal information such as hobbies, and income collected from online shoppers. Used for sales analysis.
         /// </summary>
-        public string? Demographics { get; set; }
+        public string Demographics { get; set; }
 
         /// <summary>
         /// Gets or sets rOWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.

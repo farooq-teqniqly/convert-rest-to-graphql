@@ -24,7 +24,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets shipment tracking number supplied by the shipper.
         /// </summary>
-        public string? CarrierTrackingNumber { get; set; }
+        public string CarrierTrackingNumber { get; set; }
 
         /// <summary>
         /// Gets or sets quantity ordered per product.

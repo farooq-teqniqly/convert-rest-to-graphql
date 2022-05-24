@@ -34,12 +34,12 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets the schema to which the changed object belongs.
         /// </summary>
-        public string? Schema { get; set; }
+        public string Schema { get; set; }
 
         /// <summary>
         /// Gets or sets the object that was changed by the DDL statment.
         /// </summary>
-        public string? Object { get; set; }
+        public string Object { get; set; }
 
         /// <summary>
         /// Gets or sets the exact Transact-SQL statement that was executed.

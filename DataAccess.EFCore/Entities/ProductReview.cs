@@ -44,7 +44,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets reviewer&apos;s comments.
         /// </summary>
-        public string? Comments { get; set; }
+        public string Comments { get; set; }
 
         /// <summary>
         /// Gets or sets date and time the record was last updated.

@@ -54,7 +54,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets vendor URL.
         /// </summary>
-        public string? PurchasingWebServiceUrl { get; set; }
+        public string PurchasingWebServiceUrl { get; set; }
 
         /// <summary>
         /// Gets or sets date and time the record was last updated.

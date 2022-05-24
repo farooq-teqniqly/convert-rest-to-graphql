@@ -24,7 +24,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets e-mail address for the person.
         /// </summary>
-        public string? EmailAddress1 { get; set; }
+        public string EmailAddress1 { get; set; }
 
         /// <summary>
         /// Gets or sets rOWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.

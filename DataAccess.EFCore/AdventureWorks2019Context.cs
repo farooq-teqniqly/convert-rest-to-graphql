@@ -21,7 +21,7 @@ namespace DataAccess.EFCore
         /// <summary>
         /// Initializes a new instance of the <see cref="AdventureWorks2019Context"/> class.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="options">Context options.</param>
         public AdventureWorks2019Context(DbContextOptions<AdventureWorks2019Context> options)
             : base(options)
         {

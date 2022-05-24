@@ -38,7 +38,7 @@ namespace DataAccess.EFCore.Entities
         /// <summary>
         /// Gets or sets demographic informationg about the store such as the number of employees, annual sales and store type.
         /// </summary>
-        public string? Demographics { get; set; }
+        public string Demographics { get; set; }
 
         /// <summary>
         /// Gets or sets rOWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
@@ -55,7 +55,7 @@ namespace DataAccess.EFCore.Entities
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesPerson? SalesPerson { get; set; }
+        public virtual SalesPerson SalesPerson { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
