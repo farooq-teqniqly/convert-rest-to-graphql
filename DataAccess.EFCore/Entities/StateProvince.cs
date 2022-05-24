@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// State and province lookup table.
     /// </summary>
-    public class StateProvince
+    public sealed class StateProvince
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StateProvince"/> class.
@@ -62,19 +62,19 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual CountryRegion CountryRegionCodeNavigation { get; set; } = null!;
+        public CountryRegion CountryRegionCodeNavigation { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesTerritory Territory { get; set; } = null!;
+        public SalesTerritory Territory { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<Address> Addresses { get; set; }
+        public ICollection<Address> Addresses { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesTaxRate> SalesTaxRates { get; set; }
+        public ICollection<SalesTaxRate> SalesTaxRates { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

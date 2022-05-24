@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Product inventory and manufacturing locations.
     /// </summary>
-    public class Location
+    public sealed class Location
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
@@ -47,11 +47,11 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductInventory> ProductInventories { get; set; }
+        public ICollection<ProductInventory> ProductInventories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<WorkOrderRouting> WorkOrderRoutings { get; set; }
+        public ICollection<WorkOrderRouting> WorkOrderRoutings { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

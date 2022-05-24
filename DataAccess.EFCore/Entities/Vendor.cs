@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Companies from whom Adventure Works Cycles purchases parts or other goods.
     /// </summary>
-    public class Vendor
+    public sealed class Vendor
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Vendor"/> class.
@@ -62,15 +62,15 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual BusinessEntity BusinessEntity { get; set; } = null!;
+        public BusinessEntity BusinessEntity { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductVendor> ProductVendors { get; set; }
+        public ICollection<ProductVendor> ProductVendors { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
+        public ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

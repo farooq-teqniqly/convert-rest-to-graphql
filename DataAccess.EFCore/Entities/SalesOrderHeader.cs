@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// General sales order information.
     /// </summary>
-    public class SalesOrderHeader
+    public sealed class SalesOrderHeader
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SalesOrderHeader"/> class.
@@ -152,43 +152,43 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Address BillToAddress { get; set; } = null!;
+        public Address BillToAddress { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual CreditCard CreditCard { get; set; }
+        public CreditCard CreditCard { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual CurrencyRate CurrencyRate { get; set; }
+        public CurrencyRate CurrencyRate { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Customer Customer { get; set; } = null!;
+        public Customer Customer { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesPerson SalesPerson { get; set; }
+        public SalesPerson SalesPerson { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ShipMethod ShipMethod { get; set; } = null!;
+        public ShipMethod ShipMethod { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Address ShipToAddress { get; set; } = null!;
+        public Address ShipToAddress { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesTerritory Territory { get; set; }
+        public SalesTerritory Territory { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
+        public ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderHeaderSalesReason> SalesOrderHeaderSalesReasons { get; set; }
+        public ICollection<SalesOrderHeaderSalesReason> SalesOrderHeaderSalesReasons { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

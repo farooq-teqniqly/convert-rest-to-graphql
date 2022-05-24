@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Unit of measure lookup table.
     /// </summary>
-    public class UnitMeasure
+    public sealed class UnitMeasure
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UnitMeasure"/> class.
@@ -39,19 +39,19 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BillOfMaterial> BillOfMaterials { get; set; }
+        public ICollection<BillOfMaterial> BillOfMaterials { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<Product> ProductSizeUnitMeasureCodeNavigations { get; set; }
+        public ICollection<Product> ProductSizeUnitMeasureCodeNavigations { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductVendor> ProductVendors { get; set; }
+        public ICollection<ProductVendor> ProductVendors { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<Product> ProductWeightUnitMeasureCodeNavigations { get; set; }
+        public ICollection<Product> ProductWeightUnitMeasureCodeNavigations { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

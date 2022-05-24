@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Bicycle assembly diagrams.
     /// </summary>
-    public class Illustration
+    public sealed class Illustration
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Illustration"/> class.
@@ -36,7 +36,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductModelIllustration> ProductModelIllustrations { get; set; }
+        public ICollection<ProductModelIllustration> ProductModelIllustrations { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

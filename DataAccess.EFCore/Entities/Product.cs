@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Products sold or used in the manfacturing of sold products.
     /// </summary>
-    public class Product
+    public sealed class Product
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Product"/> class.
@@ -158,71 +158,71 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ProductModel ProductModel { get; set; }
+        public ProductModel ProductModel { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ProductSubcategory ProductSubcategory { get; set; }
+        public ProductSubcategory ProductSubcategory { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
+        public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
+        public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BillOfMaterial> BillOfMaterialComponents { get; set; }
+        public ICollection<BillOfMaterial> BillOfMaterialComponents { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BillOfMaterial> BillOfMaterialProductAssemblies { get; set; }
+        public ICollection<BillOfMaterial> BillOfMaterialProductAssemblies { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductCostHistory> ProductCostHistories { get; set; }
+        public ICollection<ProductCostHistory> ProductCostHistories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductInventory> ProductInventories { get; set; }
+        public ICollection<ProductInventory> ProductInventories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductListPriceHistory> ProductListPriceHistories { get; set; }
+        public ICollection<ProductListPriceHistory> ProductListPriceHistories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductProductPhoto> ProductProductPhotos { get; set; }
+        public ICollection<ProductProductPhoto> ProductProductPhotos { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductReview> ProductReviews { get; set; }
+        public ICollection<ProductReview> ProductReviews { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductVendor> ProductVendors { get; set; }
+        public ICollection<ProductVendor> ProductVendors { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
+        public ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SpecialOfferProduct> SpecialOfferProducts { get; set; }
+        public ICollection<SpecialOfferProduct> SpecialOfferProducts { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<TransactionHistory> TransactionHistories { get; set; }
+        public ICollection<TransactionHistory> TransactionHistories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<WorkOrder> WorkOrders { get; set; }
+        public ICollection<WorkOrder> WorkOrders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

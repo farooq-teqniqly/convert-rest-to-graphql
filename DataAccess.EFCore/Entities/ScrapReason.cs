@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Manufacturing failure reasons lookup table.
     /// </summary>
-    public class ScrapReason
+    public sealed class ScrapReason
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ScrapReason"/> class.
@@ -36,7 +36,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<WorkOrder> WorkOrders { get; set; }
+        public ICollection<WorkOrder> WorkOrders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

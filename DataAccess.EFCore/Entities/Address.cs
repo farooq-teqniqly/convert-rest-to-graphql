@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Street address information for customers, employees, and vendors.
     /// </summary>
-    public class Address
+    public sealed class Address
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Address"/> class.
@@ -63,19 +63,19 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual StateProvince StateProvince { get; set; } = null!;
+        public StateProvince StateProvince { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+        public ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderHeader> SalesOrderHeaderBillToAddresses { get; set; }
+        public ICollection<SalesOrderHeader> SalesOrderHeaderBillToAddresses { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderHeader> SalesOrderHeaderShipToAddresses { get; set; }
+        public ICollection<SalesOrderHeader> SalesOrderHeaderShipToAddresses { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

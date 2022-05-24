@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Manufacturing work orders.
     /// </summary>
-    public class WorkOrder
+    public sealed class WorkOrder
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkOrder"/> class.
@@ -71,15 +71,15 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Product Product { get; set; } = null!;
+        public Product Product { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ScrapReason ScrapReason { get; set; }
+        public ScrapReason ScrapReason { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<WorkOrderRouting> WorkOrderRoutings { get; set; }
+        public ICollection<WorkOrderRouting> WorkOrderRoutings { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

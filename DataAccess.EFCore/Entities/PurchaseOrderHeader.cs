@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// General purchase order information. See PurchaseOrderDetail.
     /// </summary>
-    public class PurchaseOrderHeader
+    public sealed class PurchaseOrderHeader
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PurchaseOrderHeader"/> class.
@@ -86,19 +86,19 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Employee Employee { get; set; } = null!;
+        public Employee Employee { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ShipMethod ShipMethod { get; set; } = null!;
+        public ShipMethod ShipMethod { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Vendor Vendor { get; set; } = null!;
+        public Vendor Vendor { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
+        public ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Currency exchange rates.
     /// </summary>
-    public class CurrencyRate
+    public sealed class CurrencyRate
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrencyRate"/> class.
@@ -56,15 +56,15 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Currency FromCurrencyCodeNavigation { get; set; } = null!;
+        public Currency FromCurrencyCodeNavigation { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Currency ToCurrencyCodeNavigation { get; set; } = null!;
+        public Currency ToCurrencyCodeNavigation { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
+        public ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

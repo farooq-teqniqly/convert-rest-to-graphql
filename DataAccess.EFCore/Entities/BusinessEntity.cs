@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Source of the ID that connects vendors, customers, and employees with address and contact information.
     /// </summary>
-    public class BusinessEntity
+    public sealed class BusinessEntity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessEntity"/> class.
@@ -37,23 +37,23 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Person Person { get; set; } = null!;
+        public Person Person { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Store Store { get; set; } = null!;
+        public Store Store { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Vendor Vendor { get; set; } = null!;
+        public Vendor Vendor { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+        public ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
+        public ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

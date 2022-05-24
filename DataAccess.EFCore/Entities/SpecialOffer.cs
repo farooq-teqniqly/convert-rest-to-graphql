@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Sale discounts lookup table.
     /// </summary>
-    public class SpecialOffer
+    public sealed class SpecialOffer
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SpecialOffer"/> class.
@@ -76,7 +76,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SpecialOfferProduct> SpecialOfferProducts { get; set; }
+        public ICollection<SpecialOfferProduct> SpecialOfferProducts { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

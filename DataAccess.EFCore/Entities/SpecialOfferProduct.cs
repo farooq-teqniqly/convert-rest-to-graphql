@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Cross-reference table mapping products to special offer discounts.
     /// </summary>
-    public class SpecialOfferProduct
+    public sealed class SpecialOfferProduct
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SpecialOfferProduct"/> class.
@@ -41,15 +41,15 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Product Product { get; set; } = null!;
+        public Product Product { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SpecialOffer SpecialOffer { get; set; } = null!;
+        public SpecialOffer SpecialOffer { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
+        public ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

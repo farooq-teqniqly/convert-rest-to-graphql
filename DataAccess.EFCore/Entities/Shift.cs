@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Work shift lookup table.
     /// </summary>
-    public class Shift
+    public sealed class Shift
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Shift"/> class.
@@ -46,7 +46,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
+        public ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

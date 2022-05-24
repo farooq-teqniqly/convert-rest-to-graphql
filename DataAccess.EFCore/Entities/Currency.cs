@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Lookup table containing standard ISO currencies.
     /// </summary>
-    public class Currency
+    public sealed class Currency
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Currency"/> class.
@@ -38,15 +38,15 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<CountryRegionCurrency> CountryRegionCurrencies { get; set; }
+        public ICollection<CountryRegionCurrency> CountryRegionCurrencies { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<CurrencyRate> CurrencyRateFromCurrencyCodeNavigations { get; set; }
+        public ICollection<CurrencyRate> CurrencyRateFromCurrencyCodeNavigations { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<CurrencyRate> CurrencyRateToCurrencyCodeNavigations { get; set; }
+        public ICollection<CurrencyRate> CurrencyRateToCurrencyCodeNavigations { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

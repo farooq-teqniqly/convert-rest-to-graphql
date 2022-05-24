@@ -66,7 +66,7 @@ namespace Services.Repositories
         {
             var transaction = await this.dbContext.Database.BeginTransactionAsync();
 
-            using (transaction)
+            await using (transaction)
             {
                 var businessEntity = new BusinessEntity();
                 await this.dbContext.BusinessEntities.AddAsync(businessEntity);

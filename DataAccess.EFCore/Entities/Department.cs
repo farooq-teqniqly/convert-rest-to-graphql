@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Lookup table containing the departments within the Adventure Works Cycles company.
     /// </summary>
-    public class Department
+    public sealed class Department
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Department"/> class.
@@ -41,7 +41,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
+        public ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

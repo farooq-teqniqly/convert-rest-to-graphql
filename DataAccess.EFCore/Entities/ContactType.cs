@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Lookup table containing the types of business entity contacts.
     /// </summary>
-    public class ContactType
+    public sealed class ContactType
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContactType"/> class.
@@ -36,7 +36,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
+        public ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

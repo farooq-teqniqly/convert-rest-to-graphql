@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Shipping company lookup table.
     /// </summary>
-    public class ShipMethod
+    public sealed class ShipMethod
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipMethod"/> class.
@@ -52,11 +52,11 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
+        public ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
+        public ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

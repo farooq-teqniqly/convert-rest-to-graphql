@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Customers (resellers) of Adventure Works products.
     /// </summary>
-    public class Store
+    public sealed class Store
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Store"/> class.
@@ -51,15 +51,15 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual BusinessEntity BusinessEntity { get; set; } = null!;
+        public BusinessEntity BusinessEntity { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesPerson SalesPerson { get; set; }
+        public SalesPerson SalesPerson { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<Customer> Customers { get; set; }
+        public ICollection<Customer> Customers { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Type of phone number of a person.
     /// </summary>
-    public class PhoneNumberType
+    public sealed class PhoneNumberType
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneNumberType"/> class.
@@ -36,7 +36,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<PersonPhone> PersonPhones { get; set; }
+        public ICollection<PersonPhone> PersonPhones { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

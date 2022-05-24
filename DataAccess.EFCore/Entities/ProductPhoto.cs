@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Product images.
     /// </summary>
-    public class ProductPhoto
+    public sealed class ProductPhoto
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductPhoto"/> class.
@@ -55,7 +55,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<ProductProductPhoto> ProductProductPhotos { get; set; }
+        public ICollection<ProductProductPhoto> ProductProductPhotos { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

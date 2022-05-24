@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Lookup table containing the ISO standard codes for countries and regions.
     /// </summary>
-    public class CountryRegion
+    public sealed class CountryRegion
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CountryRegion"/> class.
@@ -38,15 +38,15 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<CountryRegionCurrency> CountryRegionCurrencies { get; set; }
+        public ICollection<CountryRegionCurrency> CountryRegionCurrencies { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesTerritory> SalesTerritories { get; set; }
+        public ICollection<SalesTerritory> SalesTerritories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<StateProvince> StateProvinces { get; set; }
+        public ICollection<StateProvince> StateProvinces { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

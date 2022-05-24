@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Product subcategories. See ProductCategory table.
     /// </summary>
-    public class ProductSubcategory
+    public sealed class ProductSubcategory
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductSubcategory"/> class.
@@ -46,11 +46,11 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ProductCategory ProductCategory { get; set; } = null!;
+        public ProductCategory ProductCategory { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

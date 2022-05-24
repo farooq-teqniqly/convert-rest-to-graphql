@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Current customer information. Also see the Person and Store tables.
     /// </summary>
-    public class Customer
+    public sealed class Customer
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Customer"/> class.
@@ -56,19 +56,19 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Person Person { get; set; }
+        public Person Person { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Store Store { get; set; }
+        public Store Store { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesTerritory Territory { get; set; }
+        public SalesTerritory Territory { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
+        public ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

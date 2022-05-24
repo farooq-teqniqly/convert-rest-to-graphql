@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Customer credit card information.
     /// </summary>
-    public class CreditCard
+    public sealed class CreditCard
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreditCard"/> class.
@@ -52,11 +52,11 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<PersonCreditCard> PersonCreditCards { get; set; }
+        public ICollection<PersonCreditCard> PersonCreditCards { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
+        public ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

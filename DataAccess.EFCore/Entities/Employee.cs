@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Employee information such as salary, department, and title.
     /// </summary>
-    public class Employee
+    public sealed class Employee
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Employee"/> class.
@@ -99,27 +99,27 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual Person BusinessEntity { get; set; } = null!;
+        public Person BusinessEntity { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual SalesPerson SalesPerson { get; set; } = null!;
+        public SalesPerson SalesPerson { get; set; } = null!;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
+        public ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<EmployeePayHistory> EmployeePayHistories { get; set; }
+        public ICollection<EmployeePayHistory> EmployeePayHistories { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<JobCandidate> JobCandidates { get; set; }
+        public ICollection<JobCandidate> JobCandidates { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
+        public ICollection<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

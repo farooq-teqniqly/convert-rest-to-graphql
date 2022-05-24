@@ -10,7 +10,7 @@ namespace DataAccess.EFCore.Entities
     /// <summary>
     /// Types of addresses stored in the Address table.
     /// </summary>
-    public class AddressType
+    public sealed class AddressType
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AddressType"/> class.
@@ -41,7 +41,7 @@ namespace DataAccess.EFCore.Entities
         public DateTime ModifiedDate { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+        public ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }
