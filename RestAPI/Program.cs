@@ -4,18 +4,23 @@
 
 namespace RestAPI
 {
-    using AutoMapper;
     using DataAccess.EFCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Services.Mappers;
     using Services.Repositories;
 
+    /// <summary>
+    /// The API entry point class.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// The API entry point.
+        /// </summary>
+        /// <param name="args">Arguments to the program.</param>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -29,12 +34,6 @@ namespace RestAPI
 
             builder.Services.AddDbContext<AdventureWorks2019Context>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("AdventureWorksDb")));
-
-            var mapperConfig = new MapperConfiguration(
-                cfg => cfg.AddProfile<MappingProfile>());
-
-            var mapper = new Mapper(mapperConfig);
-            builder.Services.AddScoped<IMapper>(_ => mapper);
 
             builder.Services.AddScoped<ISalesPeopleRepository, SalesPeopleRepository>();
 

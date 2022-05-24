@@ -2,15 +2,28 @@
 // Copyright (c) Farooq Mahmud. All rights reserved.
 // </copyright>
 
-using System;
-
-namespace Services.Models;
-
-public class SalesPersonDetailModel
+namespace Services.Models
 {
-    public int BusinessEntityId { get; set; }
+    using System;
 
-    public DateTime HireDate { get; set; }
+    /// <summary>
+    /// A model for returning sales person details.
+    /// </summary>
+    public class SalesPersonDetailModel
+    {
+        /// <summary>
+        /// Gets or sets the sales person's id.
+        /// </summary>
+        public int BusinessEntityId { get; set; }
 
-    public string TerritoryName { get; set; }
+        /// <summary>
+        /// Gets or sets the sales person's hire date.
+        /// </summary>
+        public DateTime HireDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sales person's territory name.
+        /// </summary>
+        public string TerritoryName { get; set; }
+    }
 }

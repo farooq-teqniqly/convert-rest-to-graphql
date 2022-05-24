@@ -4,27 +4,31 @@
 
 namespace Services.Repositories
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using AutoMapper;
     using DataAccess.EFCore;
     using DataAccess.EFCore.Entities;
     using Microsoft.EntityFrameworkCore;
     using Services.Models;
 
+    /// <summary>
+    /// Reads/writes sales people to/from the database.
+    /// </summary>
     public class SalesPeopleRepository : ISalesPeopleRepository
     {
         private readonly AdventureWorks2019Context dbContext;
-        private readonly IMapper mapper;
 
-        public SalesPeopleRepository(AdventureWorks2019Context dbContext, IMapper mapper)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SalesPeopleRepository"/> class.
+        /// </summary>
+        /// <param name="dbContext">The EF Core database context.</param>
+        public SalesPeopleRepository(AdventureWorks2019Context dbContext)
         {
             this.dbContext = dbContext;
-            this.mapper = mapper;
         }
 
+        /// <inheritdoc/>
         public async Task<IEnumerable<SalesPersonModel>> GetSalesPeopleAsync()
         {
             return await this.dbContext.SalesPeople
@@ -41,6 +45,7 @@ namespace Services.Repositories
                 .ToListAsync();
         }
 
+        /// <inheritdoc/>
         public async Task<SalesPersonDetailModel> GetSalesPersonDetailsAsync(int businessEntityId)
         {
             return await this.dbContext.SalesPeople
@@ -56,6 +61,7 @@ namespace Services.Repositories
                 .SingleOrDefaultAsync(sp => sp.BusinessEntityId == businessEntityId);
         }
 
+        /// <inheritdoc/>
         public async Task<int> AddSalesPersonAsync(AddSalesPersonModel addSalesPersonModel)
         {
             var businessEntity = new BusinessEntity();
