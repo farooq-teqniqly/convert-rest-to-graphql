@@ -38,12 +38,20 @@ namespace RestAPI.Controllers
             return this.Ok(salesPeople);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = nameof(GetSalesPersonDetails))]
         [ProducesResponseType(typeof(SalesPersonDetailModel), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetSalesPersonDetails(int id)
         {
             var salesPerson = await this.salesPeopleRepository.GetSalesPersonDetailsAsync(id);
             return this.Ok(salesPerson);
+        }
+
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<IActionResult> AddSalesPerson([FromBody] AddSalesPersonModel model)
+        {
+            var id = await this.salesPeopleRepository.AddSalesPersonAsync(model);
+            return this.CreatedAtRoute(nameof(GetSalesPersonDetails), new {id}, null);
         }
     }
 }
