@@ -8,6 +8,7 @@ namespace DataLoader
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using CsvHelper;
     using DataAccess.EFCore;
@@ -34,8 +35,13 @@ namespace DataLoader
 
             var connectionString = configuration["DataLoader:ConnectionString"];
             var dataFile = configuration["DataLoader:DataFile"];
-            var records = new List<Telemetry>();
+            var records = await ReadCsv(dataFile);
+            await InsertData(connectionString, records);
+        }
 
+        private static async Task<List<Telemetry>> ReadCsv(string dataFile)
+        {
+            List<Telemetry> records;
             Console.WriteLine($"Reading CSV from '{dataFile}'...");
 
             using (var reader = new StreamReader(dataFile))
@@ -43,27 +49,35 @@ namespace DataLoader
             {
                 await csv.ReadAsync();
                 csv.ReadHeader();
-
-                while (await csv.ReadAsync())
-                {
-                    var record = new Telemetry
-                    {
-                        Timestamp = csv.GetField<DateTime>("timestamp"),
-                        DeviceId = csv.GetField("device_id"),
-                        Voltage = csv.GetField<decimal>("volt"),
-                        Rotation = csv.GetField<decimal>("rotate"),
-                        Pressure = csv.GetField<decimal>("pressure"),
-                        Vibration = csv.GetField<decimal>("vibration"),
-                        DeviceStatus = csv.GetField("device_status"),
-                        IpAddress = csv.GetField("ip_address"),
-                    };
-
-                    records.Add(record);
-                }
+                records = await ReadCsvRecords(csv).ToListAsync();
             }
 
             Console.WriteLine($"Read {records.Count} records from CSV.");
+            return records;
+        }
 
+        private static async IAsyncEnumerable<Telemetry> ReadCsvRecords(CsvReader csv)
+        {
+            while (await csv.ReadAsync())
+            {
+                var record = new Telemetry
+                {
+                    Timestamp = csv.GetField<DateTime>("timestamp"),
+                    DeviceId = csv.GetField("device_id"),
+                    Voltage = csv.GetField<decimal>("volt"),
+                    Rotation = csv.GetField<decimal>("rotate"),
+                    Pressure = csv.GetField<decimal>("pressure"),
+                    Vibration = csv.GetField<decimal>("vibration"),
+                    DeviceStatus = csv.GetField("device_status"),
+                    IpAddress = csv.GetField("ip_address"),
+                };
+
+                yield return record;
+            }
+        }
+
+        private static async Task InsertData(string connectionString, List<Telemetry> records)
+        {
             var optionsBuilder = new DbContextOptionsBuilder<TelemetryDbContext>().UseSqlServer(connectionString);
 
             Console.WriteLine($"Database connection string: {connectionString}");
