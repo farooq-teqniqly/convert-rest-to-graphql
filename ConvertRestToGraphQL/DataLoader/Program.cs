@@ -36,7 +36,27 @@ namespace DataLoader
             var connectionString = configuration["DataLoader:ConnectionString"];
             var dataFile = configuration["DataLoader:DataFile"];
             var records = await ReadCsv(dataFile);
+            NormalizeTimestamps(records);
             await InsertData(connectionString, records);
+        }
+
+        private static void NormalizeTimestamps(List<Telemetry> records)
+        {
+            Console.WriteLine("Normalizing timestamps...");
+
+            var distinctTimestamps = records.Select(r => r.Timestamp).Distinct().OrderByDescending(dt => dt);
+            var map = new Dictionary<DateTime, DateTime>();
+            var hours = 1;
+
+            foreach (var timestamp in distinctTimestamps)
+            {
+                map.Add(timestamp, DateTime.Now.Subtract(TimeSpan.FromHours(hours++)));
+            }
+
+            foreach (var record in records)
+            {
+                record.Timestamp = map[record.Timestamp];
+            }
         }
 
         private static async Task<List<Telemetry>> ReadCsv(string dataFile)
@@ -79,9 +99,7 @@ namespace DataLoader
         private static async Task InsertData(string connectionString, List<Telemetry> records)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TelemetryDbContext>().UseSqlServer(connectionString);
-
-            Console.WriteLine($"Database connection string: {connectionString}");
-
+            
             using (var dbContext = new TelemetryDbContext(optionsBuilder.Options))
             {
                 Console.WriteLine("Deleting database...");
