@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLoader", "DataLoader\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.EFCore", "DataAccess.EFCore\DataAccess.EFCore.csproj", "{46381037-00CC-4AC2-91DE-CBDBC90D8EDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPI", "RestAPI\RestAPI.csproj", "{860ACA64-B497-4FC9-9603-3E533F87E784}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{46381037-00CC-4AC2-91DE-CBDBC90D8EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46381037-00CC-4AC2-91DE-CBDBC90D8EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46381037-00CC-4AC2-91DE-CBDBC90D8EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{860ACA64-B497-4FC9-9603-3E533F87E784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860ACA64-B497-4FC9-9603-3E533F87E784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860ACA64-B497-4FC9-9603-3E533F87E784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860ACA64-B497-4FC9-9603-3E533F87E784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
