@@ -1,3 +1,7 @@
+// <copyright file="TelemetryController.cs" company="Farooq Mahmud">
+// Copyright (c) Farooq Mahmud. All rights reserved.
+// </copyright>
+
 namespace RestAPI.Controllers
 {
     using System;
@@ -5,9 +9,9 @@ namespace RestAPI.Controllers
     using System.Net;
     using System.Threading.Tasks;
     using DataAccess.EFCore;
-    using DataAccess.EFCore.Entities;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using RestAPI.Models;
 
     /// <summary>
     /// Endpoints for querying device telemetry.
@@ -35,15 +39,73 @@ namespace RestAPI.Controllers
         /// <returns>The device telemetry.</returns>
         [HttpGet]
         [Route("{deviceId}")]
-        [ProducesResponseType(typeof(Telemetry[]), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Get(string deviceId, [FromQuery] TimeSpan since)
+        [ProducesResponseType(typeof(GetDeviceTelemetryEnvelopeModel), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetDeviceTelemetry(string deviceId, [FromQuery] string since)
         {
-            var telemetry = await this.dbContext.Telemetries
+            if (!EnsureTimeSpanIsValid(since, out TimeSpan ts))
+            {
+                return this.BadRequest("'since' query parameter is required and must be in a valid format.");
+            }
+
+            var sinceDt = DateTime.Now.Subtract(ts);
+
+            var telemetries = await this.dbContext.Telemetries
                 .Where(t => t.DeviceId == deviceId)
-                .Where(t => t.Timestamp >= DateTime.UtcNow.Subtract(since))
+                .Where(t => t.Timestamp >= sinceDt)
+                .Select(t => new GetDeviceTelemetryResponseModel
+                {
+                    TelemetryId = t.TelemetryId,
+                    Timestamp = t.Timestamp,
+                    Voltage = t.Voltage,
+                    Vibration = t.Vibration,
+                    Rotation = t.Rotation,
+                    Pressure = t.Pressure,
+                    DeviceStatus = t.DeviceStatus,
+                    IpAddress = t.IpAddress,
+                })
                 .ToListAsync();
 
-            return this.Ok(telemetry);
+            return this.Ok(new GetDeviceTelemetryEnvelopeModel { Count = telemetries.Count, Telemetries = telemetries });
+        }
+
+        /// <summary>
+        /// Gets telemetry for all devices within a time window.
+        /// </summary>
+        /// <param name="since">Return data later than this time span.</param>
+        /// <returns>The device telemetry.</returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(GetTelemetryEnvelopeModel), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetTelemetry([FromQuery] string since)
+        {
+            if (!EnsureTimeSpanIsValid(since, out TimeSpan ts))
+            {
+                return this.BadRequest("'since' query parameter is required and must be in a valid format.");
+            }
+
+            var sinceDt = DateTime.Now.Subtract(ts);
+
+            var telemetries = await this.dbContext.Telemetries
+                .Where(t => t.Timestamp >= sinceDt)
+                .Select(t => new GetTelemetryResponseModel
+                {
+                    TelemetryId = t.TelemetryId,
+                    DeviceId = t.DeviceId,
+                    Timestamp = t.Timestamp,
+                    Voltage = t.Voltage,
+                    Vibration = t.Vibration,
+                    Rotation = t.Rotation,
+                    Pressure = t.Pressure,
+                    DeviceStatus = t.DeviceStatus,
+                    IpAddress = t.IpAddress,
+                })
+                .ToListAsync();
+
+            return this.Ok(new GetTelemetryEnvelopeModel { Count = telemetries.Count, Telemetries = telemetries });
+        }
+
+        private static bool EnsureTimeSpanIsValid(string since, out TimeSpan ts)
+        {
+            return TimeSpan.TryParse(since, out ts);
         }
     }
 }

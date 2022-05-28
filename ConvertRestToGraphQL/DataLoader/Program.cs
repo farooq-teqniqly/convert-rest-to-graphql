@@ -99,7 +99,7 @@ namespace DataLoader
         private static async Task InsertData(string connectionString, List<Telemetry> records)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TelemetryDbContext>().UseSqlServer(connectionString);
-            
+
             using (var dbContext = new TelemetryDbContext(optionsBuilder.Options))
             {
                 Console.WriteLine("Deleting database...");

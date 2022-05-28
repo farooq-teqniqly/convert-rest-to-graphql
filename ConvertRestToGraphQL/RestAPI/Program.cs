@@ -1,3 +1,7 @@
+// <copyright file="Program.cs" company="Farooq Mahmud">
+// Copyright (c) Farooq Mahmud. All rights reserved.
+// </copyright>
+
 namespace RestAPI
 {
     using DataAccess.EFCore;
@@ -42,7 +46,6 @@ namespace RestAPI
             app.MapControllers();
 
             app.Run();
-
         }
     }
 }
