@@ -8,7 +8,9 @@ namespace RestAPI.Controllers
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
+    using AutoMapper;
     using DataAccess.EFCore;
+    using DataAccess.EFCore.Entities;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using RestAPI.Models;
@@ -21,14 +23,17 @@ namespace RestAPI.Controllers
     public class TelemetryController : ControllerBase
     {
         private readonly TelemetryDbContext dbContext;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TelemetryController"/> class.
         /// </summary>
         /// <param name="dbContext">The EF Core database context.</param>
-        public TelemetryController(TelemetryDbContext dbContext)
+        /// <param name="mapper">The model/entity mapper.</param>
+        public TelemetryController(TelemetryDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -40,6 +45,7 @@ namespace RestAPI.Controllers
         [HttpGet]
         [Route("{deviceId}")]
         [ProducesResponseType(typeof(ResponseEnvelopeModel<GetDeviceTelemetryResponseModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetDeviceTelemetry(string deviceId, [FromQuery] string since)
         {
             if (!EnsureTimeSpanIsValid(since, out TimeSpan ts))
@@ -52,17 +58,7 @@ namespace RestAPI.Controllers
             var telemetries = await this.dbContext.Telemetries
                 .Where(t => t.DeviceId == deviceId)
                 .Where(t => t.Timestamp >= sinceDt)
-                .Select(t => new GetDeviceTelemetryResponseModel
-                {
-                    TelemetryId = t.TelemetryId,
-                    Timestamp = t.Timestamp,
-                    Voltage = t.Voltage,
-                    Vibration = t.Vibration,
-                    Rotation = t.Rotation,
-                    Pressure = t.Pressure,
-                    DeviceStatus = t.DeviceStatus,
-                    IpAddress = t.IpAddress,
-                })
+                .Select(t => this.mapper.Map<Telemetry, GetDeviceTelemetryResponseModel>(t))
                 .ToListAsync();
 
             return this.Ok(new ResponseEnvelopeModel<GetDeviceTelemetryResponseModel> { Count = telemetries.Count, Data = telemetries });
@@ -75,6 +71,7 @@ namespace RestAPI.Controllers
         /// <returns>The device telemetry.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(ResponseEnvelopeModel<GetTelemetryResponseModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetTelemetry([FromQuery] string since)
         {
             if (!EnsureTimeSpanIsValid(since, out TimeSpan ts))
@@ -86,18 +83,7 @@ namespace RestAPI.Controllers
 
             var telemetries = await this.dbContext.Telemetries
                 .Where(t => t.Timestamp >= sinceDt)
-                .Select(t => new GetTelemetryResponseModel
-                {
-                    TelemetryId = t.TelemetryId,
-                    DeviceId = t.DeviceId,
-                    Timestamp = t.Timestamp,
-                    Voltage = t.Voltage,
-                    Vibration = t.Vibration,
-                    Rotation = t.Rotation,
-                    Pressure = t.Pressure,
-                    DeviceStatus = t.DeviceStatus,
-                    IpAddress = t.IpAddress,
-                })
+                .Select(t => this.mapper.Map<Telemetry, GetTelemetryResponseModel>(t))
                 .ToListAsync();
 
             return this.Ok(new ResponseEnvelopeModel<GetTelemetryResponseModel> { Count = telemetries.Count, Data = telemetries });

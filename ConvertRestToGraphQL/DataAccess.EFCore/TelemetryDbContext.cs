@@ -33,6 +33,11 @@ namespace DataAccess.EFCore
         /// </summary>
         public DbSet<Telemetry> Telemetries { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Devices DbSet.
+        /// </summary>
+        public DbSet<Device> Devices { get; set; }
+
         /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,6 +58,18 @@ namespace DataAccess.EFCore
                 entity.Property(t => t.IpAddress).IsRequired().HasMaxLength(15);
                 entity.HasIndex(t => new { t.DeviceId, t.Timestamp });
                 entity.HasIndex(t => t.Timestamp);
+            });
+
+            modelBuilder.Entity<Device>(entity =>
+            {
+                entity.ToTable("Device");
+                entity.HasKey(d => d.DeviceId);
+                entity.Property(t => t.DeviceId).IsRequired().HasMaxLength(10);
+                entity.Property(t => t.Description).IsRequired().HasMaxLength(100);
+                entity.Property(t => t.Department).IsRequired().HasMaxLength(20);
+                entity.Property(t => t.DateAcquired).IsRequired();
+                entity.Property(t => t.FirmwareVersion).IsRequired().HasMaxLength(10);
+                entity.HasMany<Telemetry>();
             });
         }
     }

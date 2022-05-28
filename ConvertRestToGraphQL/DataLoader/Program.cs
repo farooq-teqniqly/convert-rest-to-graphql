@@ -103,21 +103,47 @@ namespace DataLoader
             using (var dbContext = new TelemetryDbContext(optionsBuilder.Options))
             {
                 Console.WriteLine("Deleting database...");
-
                 await dbContext.Database.EnsureDeletedAsync();
-
                 Console.WriteLine("Creating database...");
-
                 await dbContext.Database.EnsureCreatedAsync();
-
-                await dbContext.Telemetries.AddRangeAsync(records);
-
-                Console.WriteLine("Inserting CSV records...");
-
-                var rowsInserted = await dbContext.SaveChangesAsync();
-
-                Console.WriteLine($"Inserted {rowsInserted} rows.");
+                await InsertDevices(records, dbContext);
+                await InsertTelemetries(records, dbContext);
             }
+        }
+
+        private static async Task InsertTelemetries(List<Telemetry> records, TelemetryDbContext dbContext)
+        {
+            await dbContext.Telemetries.AddRangeAsync(records);
+            Console.WriteLine("Inserting telemetry rows...");
+            var rowsInserted = await dbContext.SaveChangesAsync();
+            Console.WriteLine($"Inserted {rowsInserted} telemetry rows.");
+        }
+
+        private static async Task InsertDevices(List<Telemetry> records, TelemetryDbContext dbContext)
+        {
+            var distinctDeviceIds = records.Select(t => t.DeviceId).Distinct().ToList();
+            var departments = new string[] { "Facilities", "IT", "Finance", "Shipping" };
+            var random = new Random();
+            var devices = new List<Device>();
+
+            foreach (var deviceId in distinctDeviceIds)
+            {
+                var department = departments[random.Next(0, departments.Length - 1)];
+
+                devices.Add(new Device
+                {
+                    DeviceId = deviceId,
+                    Description = deviceId,
+                    Department = department,
+                    FirmwareVersion = "1.0.0.0",
+                    DateAcquired = DateTime.Now.Subtract(TimeSpan.FromDays(30)),
+                });
+            }
+
+            await dbContext.Devices.AddRangeAsync(devices);
+            Console.WriteLine("Inserting device rows...");
+            var rowsInserted = await dbContext.SaveChangesAsync();
+            Console.WriteLine($"Inserted {rowsInserted} device rows.");
         }
     }
 }
