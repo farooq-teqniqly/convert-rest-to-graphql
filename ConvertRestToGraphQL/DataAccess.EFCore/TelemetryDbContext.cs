@@ -44,13 +44,13 @@ namespace DataAccess.EFCore
                 entity.HasKey(t => t.TelemetryId);
                 entity.Property(t => t.TelemetryId).ValueGeneratedOnAdd();
                 entity.Property(t => t.Timestamp).IsRequired();
-                entity.Property(t => t.DeviceId).IsRequired();
+                entity.Property(t => t.DeviceId).IsRequired().HasMaxLength(10);
                 entity.Property(t => t.Voltage).IsRequired().HasColumnType("decimal(5, 2)");
                 entity.Property(t => t.Rotation).IsRequired().HasColumnType("decimal(5, 2)");
                 entity.Property(t => t.Pressure).IsRequired().HasColumnType("decimal(5, 2)");
                 entity.Property(t => t.Vibration).IsRequired().HasColumnType("decimal(4, 2)");
-                entity.Property(t => t.DeviceStatus).IsRequired();
-                entity.Property(t => t.IpAddress).IsRequired();
+                entity.Property(t => t.DeviceStatus).IsRequired().HasMaxLength(10);
+                entity.Property(t => t.IpAddress).IsRequired().HasMaxLength(15);
                 entity.HasIndex(t => new { t.DeviceId, t.Timestamp });
                 entity.HasIndex(t => t.Timestamp);
             });
