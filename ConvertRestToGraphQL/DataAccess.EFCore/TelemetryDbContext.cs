@@ -51,6 +51,8 @@ namespace DataAccess.EFCore
                 entity.Property(t => t.Vibration).IsRequired().HasColumnType("decimal(4, 2)");
                 entity.Property(t => t.DeviceStatus).IsRequired();
                 entity.Property(t => t.IpAddress).IsRequired();
+                entity.HasIndex(t => new { t.DeviceId, t.Timestamp });
+                entity.HasIndex(t => t.Timestamp);
             });
         }
     }
