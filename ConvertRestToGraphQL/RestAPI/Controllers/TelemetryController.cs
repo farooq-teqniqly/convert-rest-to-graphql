@@ -39,7 +39,7 @@ namespace RestAPI.Controllers
         /// <returns>The device telemetry.</returns>
         [HttpGet]
         [Route("{deviceId}")]
-        [ProducesResponseType(typeof(GetDeviceTelemetryEnvelopeModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseEnvelopeModel<GetDeviceTelemetryResponseModel>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetDeviceTelemetry(string deviceId, [FromQuery] string since)
         {
             if (!EnsureTimeSpanIsValid(since, out TimeSpan ts))
@@ -65,7 +65,7 @@ namespace RestAPI.Controllers
                 })
                 .ToListAsync();
 
-            return this.Ok(new GetDeviceTelemetryEnvelopeModel { Count = telemetries.Count, Telemetries = telemetries });
+            return this.Ok(new ResponseEnvelopeModel<GetDeviceTelemetryResponseModel> { Count = telemetries.Count, Data = telemetries });
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace RestAPI.Controllers
         /// <param name="since">Return data later than this time span.</param>
         /// <returns>The device telemetry.</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(GetTelemetryEnvelopeModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseEnvelopeModel<GetTelemetryResponseModel>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetTelemetry([FromQuery] string since)
         {
             if (!EnsureTimeSpanIsValid(since, out TimeSpan ts))
@@ -100,7 +100,7 @@ namespace RestAPI.Controllers
                 })
                 .ToListAsync();
 
-            return this.Ok(new GetTelemetryEnvelopeModel { Count = telemetries.Count, Telemetries = telemetries });
+            return this.Ok(new ResponseEnvelopeModel<GetTelemetryResponseModel> { Count = telemetries.Count, Data = telemetries });
         }
 
         private static bool EnsureTimeSpanIsValid(string since, out TimeSpan ts)
