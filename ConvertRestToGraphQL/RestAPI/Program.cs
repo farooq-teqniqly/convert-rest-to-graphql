@@ -10,6 +10,7 @@ namespace RestAPI
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using RestAPI.Mappers;
 
     /// <summary>
     /// The Telemetry API.
@@ -30,6 +31,8 @@ namespace RestAPI
 
             builder.Services.AddDbContext<TelemetryDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("TelemetryDb")));
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
 
