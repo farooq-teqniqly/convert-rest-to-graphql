@@ -2,6 +2,9 @@
 // Copyright (c) Farooq Mahmud. All rights reserved.
 // </copyright>
 
+using System;
+using System.Linq;
+
 namespace DataAccess.Graph.Queries
 {
     using DataAccess.EFCore;
@@ -22,7 +25,17 @@ namespace DataAccess.Graph.Queries
         {
             this.FieldAsync<ListGraphType<NonNullGraphType<TelemetryType>>>(
                 "telemetry",
-                resolve: async _ => await dbContext.Telemetries.ToListAsync());
+                "Returns device telemetry.",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<TimeSpanSecondsGraphType>> { Name = "since", Description = "The max age in seconds of the returned telemetry."}),
+                resolve: async ctx =>
+                {
+                    var sinceDt = DateTime.Now.Subtract((TimeSpan)ctx.Arguments!["since"].Value!);
+
+                    return await dbContext
+                        .Telemetries
+                        .Where(t => t.Timestamp >= sinceDt)
+                        .ToListAsync();
+                });
         }
     }
 }

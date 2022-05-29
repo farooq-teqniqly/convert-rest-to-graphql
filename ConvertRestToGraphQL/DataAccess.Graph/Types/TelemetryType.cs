@@ -31,6 +31,7 @@ namespace DataAccess.Graph.Types
 
             this.Field<NonNullGraphType<DeviceType>>(
                 "device",
+                "The device that produced this telemetry.",
                 resolve: ctx =>
             {
                 return dbContext.Devices.SingleOrDefault(d => d.DeviceId == ctx.Source.DeviceId);
