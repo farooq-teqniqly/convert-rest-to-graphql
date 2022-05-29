@@ -14,7 +14,10 @@ namespace RestAPI.Mappers
     public class UpdateDeviceModelMapper : ITypeConverter<UpdateDeviceModel, Device>
     {
         /// <inheritdoc/>
-        public Device Convert(UpdateDeviceModel source, Device destination, ResolutionContext context)
+        public Device Convert(
+            UpdateDeviceModel source,
+            Device destination,
+            ResolutionContext context)
         {
             return new Device
             {

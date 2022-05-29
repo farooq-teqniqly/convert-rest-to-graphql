@@ -14,7 +14,10 @@ namespace RestAPI.Mappers
     public class GetDeviceResponseModelMapper : ITypeConverter<Device, GetDeviceResponseModel>
     {
         /// <inheritdoc/>
-        public GetDeviceResponseModel Convert(Device source, GetDeviceResponseModel destination, ResolutionContext context)
+        public GetDeviceResponseModel Convert(
+            Device source,
+            GetDeviceResponseModel destination,
+            ResolutionContext context)
         {
             return new GetDeviceResponseModel
             {

@@ -75,7 +75,11 @@ namespace RestAPI.Controllers
                 .Select(d => this.mapper.Map<Device, GetDevicesResponseModel>(d))
                 .ToListAsync();
 
-            return this.Ok(new ResponseEnvelopeModel<GetDevicesResponseModel> { Count = devices.Count, Data = devices });
+            return this.Ok(
+                new ResponseEnvelopeModel<GetDevicesResponseModel>
+                {
+                    Count = devices.Count, Data = devices,
+                });
         }
 
         /// <summary>
@@ -103,7 +107,11 @@ namespace RestAPI.Controllers
 
             var responseModel = this.mapper.Map<Device, UpdateDeviceResponseModel>(device);
 
-            return this.Ok(new ResponseEnvelopeModel<UpdateDeviceResponseModel> { Count = 1, Data = new List<UpdateDeviceResponseModel> { responseModel } });
+            return this.Ok(
+                new ResponseEnvelopeModel<UpdateDeviceResponseModel>
+                {
+                    Count = 1, Data = new List<UpdateDeviceResponseModel> { responseModel },
+                });
         }
     }
 }

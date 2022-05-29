@@ -61,7 +61,11 @@ namespace RestAPI.Controllers
                 .Select(t => this.mapper.Map<Telemetry, GetDeviceTelemetryResponseModel>(t))
                 .ToListAsync();
 
-            return this.Ok(new ResponseEnvelopeModel<GetDeviceTelemetryResponseModel> { Count = telemetries.Count, Data = telemetries });
+            return this.Ok(
+                new ResponseEnvelopeModel<GetDeviceTelemetryResponseModel>
+                {
+                    Count = telemetries.Count, Data = telemetries,
+                });
         }
 
         /// <summary>
@@ -86,7 +90,11 @@ namespace RestAPI.Controllers
                 .Select(t => this.mapper.Map<Telemetry, GetTelemetryResponseModel>(t))
                 .ToListAsync();
 
-            return this.Ok(new ResponseEnvelopeModel<GetTelemetryResponseModel> { Count = telemetries.Count, Data = telemetries });
+            return this.Ok(
+                new ResponseEnvelopeModel<GetTelemetryResponseModel>
+                {
+                    Count = telemetries.Count, Data = telemetries,
+                });
         }
 
         private static bool EnsureTimeSpanIsValid(string since, out TimeSpan ts)
