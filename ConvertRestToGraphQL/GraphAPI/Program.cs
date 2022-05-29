@@ -38,21 +38,19 @@ namespace GraphAPI
 
             webApplicationBuilder.Services.AddDbContext<TelemetryDbContext>(
                 options =>
-                options.UseSqlServer(webApplicationBuilder.Configuration.GetConnectionString("TelemetryDb")),
-                ServiceLifetime.Transient,
-                ServiceLifetime.Transient);
+                options.UseSqlServer(webApplicationBuilder.Configuration.GetConnectionString("TelemetryDb")));
 
-            webApplicationBuilder.Services.AddTransient<TelemetryType>();
-            webApplicationBuilder.Services.AddTransient<DeviceType>();
-            webApplicationBuilder.Services.AddTransient<RootQuery>();
-            webApplicationBuilder.Services.AddTransient<TelemetryQuery>();
-            webApplicationBuilder.Services.AddTransient<ISchema, RootSchema>();
+            webApplicationBuilder.Services.AddScoped<TelemetryType>();
+            webApplicationBuilder.Services.AddScoped<DeviceType>();
+            webApplicationBuilder.Services.AddScoped<RootQuery>();
+            webApplicationBuilder.Services.AddScoped<TelemetryQuery>();
+            webApplicationBuilder.Services.AddScoped<ISchema, RootSchema>();
 
             webApplicationBuilder.Services.AddGraphQL(builder =>
             {
                 builder.AddApolloTracing(webApplicationBuilder.Environment.IsDevelopment());
                 builder.AddHttpMiddleware<RootSchema, GraphQLHttpMiddleware<RootSchema>>();
-                builder.AddSchema<RootSchema>();
+                builder.AddSchema<RootSchema>(GraphQL.DI.ServiceLifetime.Scoped);
                 builder.ConfigureExecutionOptions(options =>
                 {
                     options.EnableMetrics = webApplicationBuilder.Environment.IsDevelopment();

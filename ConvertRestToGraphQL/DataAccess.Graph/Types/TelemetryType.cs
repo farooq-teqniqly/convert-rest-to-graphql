@@ -4,10 +4,10 @@
 
 namespace DataAccess.Graph.Types
 {
+    using System.Linq;
     using DataAccess.EFCore;
     using DataAccess.EFCore.Entities;
     using GraphQL.Types;
-    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// The Telemetry GraphQL type.
@@ -29,11 +29,11 @@ namespace DataAccess.Graph.Types
             this.Field(t => t.DeviceStatus);
             this.Field(t => t.IpAddress);
 
-            this.FieldAsync<NonNullGraphType<DeviceType>>(
+            this.Field<NonNullGraphType<DeviceType>>(
                 "device",
-                resolve: async ctx =>
+                resolve: ctx =>
             {
-                return await dbContext.Devices.SingleOrDefaultAsync(d => d.DeviceId == ctx.Source.DeviceId);
+                return dbContext.Devices.SingleOrDefault(d => d.DeviceId == ctx.Source.DeviceId);
             });
         }
     }
