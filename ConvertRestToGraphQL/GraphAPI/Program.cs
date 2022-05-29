@@ -2,52 +2,55 @@
 // Copyright (c) Farooq Mahmud. All rights reserved.
 // </copyright>
 
+using System.Linq;
+using System.Threading.Tasks;
+using DataAccess.EFCore;
+using DataAccess.Graph.Queries;
+using DataAccess.Graph.Schemas;
+using DataAccess.Graph.Types;
+using GraphiQl;
+using GraphQL.Types;
+using GraphQL.Server;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
 namespace GraphAPI
 {
-    using System.Threading.Tasks;
-    using GraphQL;
-    using GraphQL.MicrosoftDI;
     using GraphQL.SystemTextJson;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
 
     public class Program
     {
         public static void Main(string[] args)
         {
-            var webApplicationBuilder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(args);
 
-            webApplicationBuilder.Services.AddGraphQL(builder =>
+            builder.Services.AddDbContext<TelemetryDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("TelemetryDb")));
+
+            builder.Services.AddScoped<TelemetryType>();
+            builder.Services.AddScoped<DeviceType>();
+            builder.Services.AddScoped<RootQuery>();
+            builder.Services.AddScoped<TelemetryQuery>();
+            builder.Services.AddScoped<ISchema, RootSchema>();
+
+            builder.Services.AddGraphQL(options =>
             {
-                builder.ConfigureExecutionOptions(options =>
-                {
-                    options.EnableMetrics = webApplicationBuilder.Environment.IsDevelopment();
+                options.EnableMetrics = builder.Environment.IsDevelopment();
+            }).AddSystemTextJson();
 
-                    var logger = options.RequestServices!.GetRequiredService<ILogger<Program>>();
-
-                    options.UnhandledExceptionDelegate = ctx =>
-                    {
-                        logger.LogError($"GraphQL startup error: {ctx.OriginalException.Message}");
-                        return Task.CompletedTask;
-                    };
-                });
-
-                builder.AddSystemTextJson();
-
-                builder.AddErrorInfoProvider(
-                    options => options.ExposeExceptionStackTrace = webApplicationBuilder.Environment.IsDevelopment());
-            });
-
-            var app = webApplicationBuilder.Build();
+            var app = builder.Build();
             app.UseHttpsRedirection();
 
             if (app.Environment.IsDevelopment())
             {
-                app.UseGraphQLGraphiQL();
+                app.UseGraphiQl("/graphiql");
             }
 
+            app.UseGraphQL<ISchema>();
             app.Run();
         }
     }
