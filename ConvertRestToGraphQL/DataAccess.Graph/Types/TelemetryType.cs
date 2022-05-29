@@ -29,7 +29,7 @@ namespace DataAccess.Graph.Types
             this.Field(t => t.DeviceStatus);
             this.Field(t => t.IpAddress);
 
-            this.FieldAsync<DeviceType>(
+            this.FieldAsync<NonNullGraphType<DeviceType>>(
                 "device",
                 resolve: async ctx =>
             {

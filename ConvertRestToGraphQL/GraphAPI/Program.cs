@@ -39,8 +39,8 @@ namespace GraphAPI
             webApplicationBuilder.Services.AddDbContext<TelemetryDbContext>(
                 options =>
                 options.UseSqlServer(webApplicationBuilder.Configuration.GetConnectionString("TelemetryDb")),
-                ServiceLifetime.Singleton,
-                ServiceLifetime.Singleton);
+                ServiceLifetime.Transient,
+                ServiceLifetime.Transient);
 
             webApplicationBuilder.Services.AddTransient<TelemetryType>();
             webApplicationBuilder.Services.AddTransient<DeviceType>();
