@@ -4,16 +4,17 @@
 
 namespace DataAccess.Graph.Types
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using DataAccess.EFCore.Entities;
     using GraphQL.Types;
 
+    /// <summary>
+    /// The Device GraphQL type.
+    /// </summary>
     public sealed class DeviceType : ObjectGraphType<Device>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceType"/> class.
+        /// </summary>
         public DeviceType()
         {
             this.Field(e => e.DeviceId);

@@ -9,8 +9,15 @@ namespace DataAccess.Graph.Types
     using GraphQL.Types;
     using Microsoft.EntityFrameworkCore;
 
+    /// <summary>
+    /// The Telemetry GraphQL type.
+    /// </summary>
     public sealed class TelemetryType : ObjectGraphType<Telemetry>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TelemetryType"/> class.
+        /// </summary>
+        /// <param name="dbContext">The EF Core database context.</param>
         public TelemetryType(TelemetryDbContext dbContext)
         {
             this.Field(t => t.TelemetryId);
@@ -28,7 +35,6 @@ namespace DataAccess.Graph.Types
             {
                 return await dbContext.Devices.SingleOrDefaultAsync(d => d.DeviceId == ctx.Source.DeviceId);
             });
-
         }
     }
 }
