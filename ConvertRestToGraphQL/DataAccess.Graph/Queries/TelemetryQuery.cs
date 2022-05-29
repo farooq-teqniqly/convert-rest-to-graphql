@@ -2,11 +2,10 @@
 // Copyright (c) Farooq Mahmud. All rights reserved.
 // </copyright>
 
-using System;
-using System.Linq;
-
 namespace DataAccess.Graph.Queries
 {
+    using System;
+    using System.Linq;
     using DataAccess.EFCore;
     using DataAccess.Graph.Types;
     using GraphQL.Types;
@@ -26,7 +25,11 @@ namespace DataAccess.Graph.Queries
             this.FieldAsync<ListGraphType<NonNullGraphType<TelemetryType>>>(
                 "telemetry",
                 "Returns device telemetry.",
-                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<TimeSpanSecondsGraphType>> { Name = "since", Description = "The max age in seconds of the returned telemetry."}),
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<TimeSpanSecondsGraphType>>
+                {
+                    Name = "since",
+                    Description = "The max age in seconds of the returned telemetry.",
+                }),
                 resolve: async ctx =>
                 {
                     var sinceDt = DateTime.Now.Subtract((TimeSpan)ctx.Arguments!["since"].Value!);
