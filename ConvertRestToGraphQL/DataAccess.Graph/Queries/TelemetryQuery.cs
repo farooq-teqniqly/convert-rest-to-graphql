@@ -25,19 +25,30 @@ namespace DataAccess.Graph.Queries
             this.FieldAsync<ListGraphType<NonNullGraphType<TelemetryType>>>(
                 "telemetry",
                 "Returns device telemetry.",
-                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<TimeSpanSecondsGraphType>>
-                {
-                    Name = "since",
-                    Description = "The max age in seconds of the returned telemetry.",
-                }),
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<TimeSpanSecondsGraphType>>
+                                {
+                                    Name = "since",
+                                    Description = "The max age in seconds of the returned telemetry.",
+                                },
+                    new QueryArgument<StringGraphType>
+                                {
+                                    Name = "deviceId",
+                                    Description = "The device id to return telemetry for.",
+                                }),
                 resolve: async ctx =>
                 {
                     var sinceDt = DateTime.Now.Subtract((TimeSpan)ctx.Arguments!["since"].Value!);
+                    var deviceId = ctx.Arguments!["deviceId"].Value! as string;
 
-                    return await dbContext
-                        .Telemetries
-                        .Where(t => t.Timestamp >= sinceDt)
-                        .ToListAsync();
+                    var query = dbContext.Telemetries.Where(t => t.Timestamp >= sinceDt);
+
+                    if (deviceId != null)
+                    {
+                        query = query.Where(t => t.DeviceId == deviceId);
+                    }
+
+                    return await query.ToListAsync();
                 });
         }
     }
