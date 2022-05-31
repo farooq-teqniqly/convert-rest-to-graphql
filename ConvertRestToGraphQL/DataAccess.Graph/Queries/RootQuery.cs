@@ -17,6 +17,7 @@ namespace DataAccess.Graph.Queries
         public RootQuery()
         {
             this.Field<TelemetryQuery>("telemetryQuery", resolve: _ => new { });
+            this.Field<DeviceQuery>("deviceQuery", resolve: _ => new { });
         }
     }
 }

@@ -6,6 +6,7 @@ namespace GraphAPI
 {
     using System.Threading.Tasks;
     using DataAccess.EFCore;
+    using DataAccess.Graph.Mutations;
     using DataAccess.Graph.Queries;
     using DataAccess.Graph.Schemas;
     using DataAccess.Graph.Types;
@@ -44,6 +45,10 @@ namespace GraphAPI
             webApplicationBuilder.Services.AddScoped<DeviceType>();
             webApplicationBuilder.Services.AddScoped<RootQuery>();
             webApplicationBuilder.Services.AddScoped<TelemetryQuery>();
+
+            webApplicationBuilder.Services.AddScoped<DeviceMutation>();
+            webApplicationBuilder.Services.AddScoped<RootMutation>();
+
             webApplicationBuilder.Services.AddScoped<ISchema, RootSchema>();
 
             webApplicationBuilder.Services.AddGraphQL(builder =>
