@@ -1,0 +1,23 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["GraphAPI/GraphAPI.csproj", "GraphAPI/"]
+COPY ["DataAccess.Graph/DataAccess.Graph.csproj", "DataAccess.Graph/"]
+COPY ["DataAccess.EFCore/DataAccess.EFCore.csproj", "DataAccess.EFCore/"]
+RUN dotnet restore "GraphAPI/GraphAPI.csproj"
+COPY . .
+WORKDIR "/src/GraphAPI"
+RUN dotnet build "GraphAPI.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "GraphAPI.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "GraphAPI.dll"]

@@ -29,12 +29,20 @@ namespace DataLoader
         public static async Task Main(string[] args)
         {
             var configuration = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
                 .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
                 .Build();
+
+            var waitForTime = TimeSpan.Parse(configuration["DataLoader:WaitForSqlStartupTime"]);
+            Console.WriteLine(waitForTime);
+
+            await Task.Delay(waitForTime);
 
             var connectionString = configuration["DataLoader:ConnectionString"];
             var dataFile = configuration["DataLoader:DataFile"];
+
+            Console.WriteLine(connectionString);
+
             var records = await ReadCsv(dataFile);
             NormalizeTimestamps(records);
             await InsertData(connectionString, records);

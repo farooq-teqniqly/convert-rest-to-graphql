@@ -1,0 +1,58 @@
+version: '3.4'
+
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=Strong(!)Password
+    - MSSQL_PID=Express
+    ports:
+    - "1433:1433"
+  
+  dataloader:
+    image: ${DOCKER_REGISTRY-}dataloader
+    build:
+      context: .
+      dockerfile: DataLoader/Dockerfile
+    environment:
+    - DataLoader__ConnectionString=Server=sql;Database=Telemetry;User Id=sa;Password=Strong(!)Password;
+    depends_on:
+    - sql
+    
+  restapi:
+    image: ${DOCKER_REGISTRY-}restapi
+    build:
+      context: .
+      dockerfile: RestAPI/Dockerfile
+    ports:
+    - "55555:443"
+    environment:
+    - ConnectionStrings__TelemetryDb=Server=sql;Database=Telemetry;User Id=sa;Password=Strong(!)Password;
+    - ASPNETCORE_ENVIRONMENT=Development
+    - ASPNETCORE_URLS=https://+:443
+    - ASPNETCORE_Kestrel__Certificates__Default__Password=Strong(!)Password
+    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+    - ~/.aspnet/https:/https:ro
+    depends_on:
+    - sql
+  
+  graphapi:
+    image: ${DOCKER_REGISTRY-}graphapi
+    build:
+      context: .
+      dockerfile: GraphAPI/Dockerfile
+    ports:
+    - "44444:443"
+    environment:
+    - ConnectionStrings__TelemetryDb=Server=sql;Database=Telemetry;User Id=sa;Password=Strong(!)Password;
+    - ASPNETCORE_ENVIRONMENT=Development
+    - ASPNETCORE_URLS=https://+:443
+    - ASPNETCORE_Kestrel__Certificates__Default__Password=Strong(!)Password
+    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+    - ~/.aspnet/https:/https:ro
+    depends_on:
+    - sql
+

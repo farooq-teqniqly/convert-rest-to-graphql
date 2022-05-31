@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.EFCore", "DataAc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAPI", "RestAPI\RestAPI.csproj", "{860ACA64-B497-4FC9-9603-3E533F87E784}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphAPI", "GraphAPI\GraphAPI.csproj", "{7053F71F-460C-4883-B213-BDA55DC0A382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphAPI", "GraphAPI\GraphAPI.csproj", "{7053F71F-460C-4883-B213-BDA55DC0A382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Graph", "DataAccess.Graph\DataAccess.Graph.csproj", "{278FD2D6-D5B0-41C9-BACB-EBC1B2163329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Graph", "DataAccess.Graph\DataAccess.Graph.csproj", "{278FD2D6-D5B0-41C9-BACB-EBC1B2163329}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7F8F5806-4C0D-40AB-9D42-AAF639B55FA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4727D066-9EEF-499B-936E-6B4E0BC8AB58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,10 @@ Global
 		{278FD2D6-D5B0-41C9-BACB-EBC1B2163329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{278FD2D6-D5B0-41C9-BACB-EBC1B2163329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{278FD2D6-D5B0-41C9-BACB-EBC1B2163329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8F5806-4C0D-40AB-9D42-AAF639B55FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8F5806-4C0D-40AB-9D42-AAF639B55FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8F5806-4C0D-40AB-9D42-AAF639B55FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8F5806-4C0D-40AB-9D42-AAF639B55FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
